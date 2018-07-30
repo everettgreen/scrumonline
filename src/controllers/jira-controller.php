@@ -9,10 +9,15 @@ class JiraController extends ControllerBase
     {
         $parameters = array_merge((array) $jiraConfiguration, $_POST);
 
-        $jiraUrl = $parameters['base_url'] . '/rest/api/2/search?jql=project=' . $parameters['project'];
-        if ($parameters['jql']) {
-            $jiraUrl .= ' and ' . $parameters['jql'];
+        $jiraUrl = $parameters['base_url'] . '/rest/api/2/search?jql=';
+        $params = [];
+        if ($parameters['project']) {
+            $params[] = 'project=' . $parameters['project'];
         }
+        if ($parameters['jql']) {
+            $params[] = $parameters['jql'];
+        }
+        $jiraUrl .= implode(' and ', $params);
 
         if (substr_count(strtolower($parameters['jql']), "order by") == 0 && substr_count(strtolower($parameters['jql']), "order%20by") == 0) {
             $jiraUrl .= ' order by priority';
