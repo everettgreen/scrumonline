@@ -16,7 +16,7 @@ $ga = 'GOOGLE-ANALYTICS';
   
 $cardSets = [
     // Standard fibonaci like series of values
-    ['1', '2', '3', '5', '8', '13', '20', '40', '100'],
+    ['1', '2', '3', '?'],
     // Special card set with '?' for unclear stories
     ['1', '2', '3', '5', '8', '13', '20', '40', '?'],
     // Powers of two used by other teams
@@ -36,12 +36,10 @@ $cardSets = [
 ];
 
 // Src tree for documentation linking from page
-$src = "https://github.com/Toxantron/scrumonline/tree/master";
+$src = "https://github.com/everettgreen/scrumonline/tree/master";
 
 // Active ticketing plugins of the page
 $plugins = [
-    // Plugin to load issues from github
-    'GitHub',
     // Plugin to load issues from JIRA
     'JIRA'
 ];
