@@ -1,5 +1,5 @@
 <?php
-
+  
 /*
  * Jira controller class to handle all Jira operations
  */
@@ -7,9 +7,10 @@ class JiraController extends ControllerBase
 {
     public function getIssues()
     {
-        $parameters = array_merge((array) $jiraConfiguration, $_POST);
+        //$parameters = array_merge((array) $jiraConfiguration, $_POST);
+        $parameters = $_POST;
 
-        $jiraUrl = $parameters['base_url'] . '/rest/api/2/search?jql=';
+        $jiraUrl = $parameters['base_url'] . '/rest/api/latest/search?jql=';
         $params = [];
         if ($parameters['project']) {
             $params[] = 'project=' . $parameters['project'];
@@ -20,7 +21,7 @@ class JiraController extends ControllerBase
         $jiraUrl .= implode(' and ', $params);
 
         if (substr_count(strtolower($parameters['jql']), "order by") == 0 && substr_count(strtolower($parameters['jql']), "order%20by") == 0) {
-            $jiraUrl .= ' order by priority';
+            //$jiraUrl .= ' order by priority';
         }
 
         $client = new GuzzleHttp\Client();
